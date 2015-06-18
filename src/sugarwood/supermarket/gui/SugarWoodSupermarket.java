@@ -1,4 +1,4 @@
-package sugarwood.supermarket;
+package sugarwood.supermarket.gui;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
