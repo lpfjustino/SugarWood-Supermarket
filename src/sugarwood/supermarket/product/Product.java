@@ -32,4 +32,29 @@ public abstract class Product {
         this.supplier = supplier;
     }
     
+    @Override
+    public int hashCode() {
+        return (getName()+getSupplier()).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SupplierProduct other = (SupplierProduct) obj;
+        return true;
+    }
+    
+    @Override
+    public String toString() {
+        String display = "Name: " + getName() + "\n" +
+                "GoodThru: " + getGoodThru() + "\n" +
+                "Supplier: " + getSupplier();
+        
+        return display;
+    }
 }
