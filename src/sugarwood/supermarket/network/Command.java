@@ -1,4 +1,4 @@
-package sugarwood.network;
+package sugarwood.supermarket.network;
 
 public enum Command {
     EXIT("exit");

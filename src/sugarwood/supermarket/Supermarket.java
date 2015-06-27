@@ -51,4 +51,12 @@ public class Supermarket implements Suppliable {
             System.out.println(product + "\nQty: " + qty + "\n");
         });
     }
+    
+    public void listUsers() {
+        users
+                .stream()
+                .forEach(user -> {
+                    System.out.println(user);
+                });
+    }
 }

@@ -1,4 +1,4 @@
-package sugarwood.network;
+package sugarwood.supermarket.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
