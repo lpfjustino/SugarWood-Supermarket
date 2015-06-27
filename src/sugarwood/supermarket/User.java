@@ -8,8 +8,14 @@ public class User {
     private String mail;
     private String password;
     
-    public User(int id) {
+    public User(int id, String name, String address, String phone, String mail,
+                                                            String password) {
         this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.mail = mail;
+        this.password = password;
     }
 
     public int getId() {
@@ -58,5 +64,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    @Override
+    public String toString() {
+        String text = "ID: " + getId() + "\n" +
+                "Name: " + getName() + "\n" +
+                "Addr: " + getAddress()+ "\n" +
+                "Phone: " + getPhone()+ "\n" +
+                "Mail: " + getMail() + "\n" +
+                "Pwd: " + getPassword()+ "\n";
+        
+        return text;
     }
 }

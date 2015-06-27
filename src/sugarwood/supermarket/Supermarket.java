@@ -2,39 +2,61 @@ package sugarwood.supermarket;
 
 import sugarwood.supermarket.product.Product;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Observer;
 import sugarwood.supermarket.product.Sell;
 import sugarwood.supermarket.product.SupermarketProduct;
-import sugarwood.supermarket.product.SupplierProduct;
 
 
 public class Supermarket implements Suppliable {
     ArrayList<User> users;
-    Map<Product, Integer> stock;
-    Map<SupermarketProduct, ArrayList<Observer>> waitList;
+    HashMap<SupermarketProduct, Integer> stock;
+    HashMap<SupermarketProduct, ArrayList<Observer>> waitList;
     ArrayList<Sell> history;
+    ArrayList<Supply> supplyBuffer;
     
-    public void sell(Product product, User user) {
+    public Supermarket() {
+        users = new ArrayList<>();
+        stock = new HashMap<>();
+        waitList = new HashMap<>();
+        history = new ArrayList<>();
+        supplyBuffer = new ArrayList<>();
+    }
+    
+    public synchronized void sell(Product product, User user) {
         // TODO
     }
     
     // Efetua o reabastecimento de uma lista de produtos associada à quantidade
     // recebida e notifica os usuários inscritos na lista de espera
     @Override
-    public void restock(Map<SupplierProduct, Integer> supply) {
-        // TODO
+    public void restock(Supply supply) {
+        supplyBuffer.add(supply);
+    }
+    
+    private void refillProduct(Product product, Integer qty) {
+        
     }
     
     public void registerUser(User user) {
-        // TODO
+        users.add(user);
     }
     
-    public void registerProduct(SupermarketProduct product) {
-        // TODO
+    public void registerProduct(SupermarketProduct product, int qty) {
+        stock.put(product, qty);
     }
     
     public void listStock() {
-        // TODO
+        stock.forEach((product, qty) -> {
+            System.out.println(product + "\nQty: " + qty + "\n");
+        });
+    }
+    
+    public void listUsers() {
+        users
+                .stream()
+                .forEach(user -> {
+                    System.out.println(user);
+                });
     }
 }
