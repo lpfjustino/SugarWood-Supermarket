@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.HomeScreenController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.HomeScreenController">
+   <children>
+      <Button layoutX="123.0" layoutY="174.0" mnemonicParsing="false" onAction="#managerButtonAction" prefHeight="44.0" prefWidth="368.0" text="Manager" />
+      <Button layoutX="123.0" layoutY="236.0" mnemonicParsing="false" onAction="#supplierButtonAction" prefHeight="44.0" prefWidth="368.0" text="Supplier" />
+      <Button layoutX="123.0" layoutY="298.0" mnemonicParsing="false" onAction="#clientButtonAction" prefHeight="44.0" prefWidth="368.0" text="Client" />
+      <Label layoutX="47.0" layoutY="45.0" text="SugarWood Supermarket">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="122.0" text="Select perspective:" />
+   </children>
 </AnchorPane>
