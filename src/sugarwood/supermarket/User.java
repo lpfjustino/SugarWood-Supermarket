@@ -1,7 +1,11 @@
 package sugarwood.supermarket;
 
-public class User {
-    private int id;
+import java.util.HashMap;
+
+import sugarwood.supermarket.csv.AbstractModel;
+
+public class User implements AbstractModel{
+    private Integer id;
     private String name;
     private String address;
     private String phone;
@@ -18,7 +22,11 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -77,4 +85,36 @@ public class User {
         
         return text;
     }
+
+	@Override
+	public String[] getFieldValues() {
+		
+		String[] fieldValues = new String [] {getId().toString()
+		, getName()
+		, getAddress()
+		, getPhone()
+		, getMail()
+		, getPassword()
+		};
+
+		return fieldValues;
+	}
+
+	@Override
+	public void setFieldValues(String[] fieldValues) {
+
+		setId (Integer.parseInt(fieldValues[0]));
+		setName (fieldValues[1]);
+		setAddress(fieldValues[2]);
+		setPhone (fieldValues[3]);
+		setMail (fieldValues[4]);
+		setPassword (fieldValues[5]);
+		
+	}
+
+	@Override
+	public String getArchiveName() {
+//		TODO: criar o arquivo e passar o nome certo
+		return "userDatabase.csv";
+	}
 }

@@ -2,8 +2,10 @@ package sugarwood.supermarket.product;
 
 import java.util.Date;
 
+import sugarwood.supermarket.csv.AbstractModel;
 
-public class SupermarketProduct extends Product {
+
+public class SupermarketProduct extends Product implements AbstractModel{
     private int id;
     private double price;
     
@@ -15,6 +17,10 @@ public class SupermarketProduct extends Product {
         this.setSupplier(product.getSupplier());
     }
     
+    public SupermarketProduct() {
+    	
+    }
+    
     public SupermarketProduct(String name, Date goodThru, String supplier,
                                                          int id, double price) {
         this.setId(id);
@@ -24,7 +30,7 @@ public class SupermarketProduct extends Product {
         this.setSupplier(supplier);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -32,7 +38,7 @@ public class SupermarketProduct extends Product {
         this.id = id;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -50,4 +56,35 @@ public class SupermarketProduct extends Product {
         
         return display;
     }
+
+	@Override
+	public String[] getFieldValues() {
+		
+		String[] fieldValues = new String [] {getId().toString()
+		, getName()
+		, ((Long)getGoodThru().getTime()).toString()
+		, getSupplier()
+		, getPrice().toString()
+		};
+
+		return fieldValues;
+	}
+
+	@Override
+	public void setFieldValues(String[] fieldValues) {
+		
+		setId (Integer.parseInt(fieldValues[0]));
+		setName (fieldValues[1]);
+		setGoodThru(new Date (Long.parseLong(fieldValues[2])));
+		setSupplier(fieldValues[3]);
+		setPrice(Double.parseDouble(fieldValues[4]));
+		
+		
+	}
+
+	@Override
+	public String getArchiveName() {
+//		TODO: criar o arquivo e passar o nome certo
+		return "productDatabase.csv";
+	}
 }
