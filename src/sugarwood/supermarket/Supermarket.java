@@ -34,7 +34,7 @@ public class Supermarket implements Suppliable {
         supplyBuffer.add(supply);
     }
     
-    private void refillProduct(Product product, Integer qty) {
+    private void refillProduct(SupermarketProduct product, Integer qty) {
         
     }
     

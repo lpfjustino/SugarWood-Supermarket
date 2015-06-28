@@ -48,7 +48,7 @@ public class SugarWoodSupermarket extends Application {
 //        smp = new SupermarketProduct("outro produto",
 //                new Date(10000), "élepê", 5, 150.50);
 //        supermarket.registerProduct(smp, 15);
-//        
+        
 //        supermarket.listStock();
         
 //        user = new User(1, "LP", "Casa", "Tel", "Mail", "Pwd");
