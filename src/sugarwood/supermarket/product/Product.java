@@ -36,18 +36,6 @@ public abstract class Product {
     public int hashCode() {
         return (getName()+getSupplier()).hashCode();
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final SupplierProduct other = (SupplierProduct) obj;
-        return true;
-    }
     
     @Override
     public String toString() {

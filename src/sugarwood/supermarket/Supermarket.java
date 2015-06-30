@@ -4,16 +4,18 @@ import sugarwood.supermarket.product.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observer;
+import sugarwood.supermarket.network.ConnectionsManager;
 import sugarwood.supermarket.product.Sell;
 import sugarwood.supermarket.product.SupermarketProduct;
 
 
 public class Supermarket implements Suppliable {
-    ArrayList<User> users;
-    HashMap<SupermarketProduct, Integer> stock;
-    HashMap<SupermarketProduct, ArrayList<Observer>> waitList;
-    ArrayList<Sell> history;
-    ArrayList<Supply> supplyBuffer;
+    private ArrayList<User> users;
+    private HashMap<SupermarketProduct, Integer> stock;
+    private HashMap<SupermarketProduct, ArrayList<Observer>> waitList;
+    private ArrayList<Sell> history;
+    private ArrayList<Supply> supplyBuffer;
+    private ConnectionsManager connectionManager;
     
     public Supermarket() {
         users = new ArrayList<>();
@@ -21,6 +23,7 @@ public class Supermarket implements Suppliable {
         waitList = new HashMap<>();
         history = new ArrayList<>();
         supplyBuffer = new ArrayList<>();
+        connectionManager = new ConnectionsManager();
     }
     
     public synchronized void sell(Product product, User user) {
@@ -31,7 +34,7 @@ public class Supermarket implements Suppliable {
     // recebida e notifica os usuários inscritos na lista de espera
     @Override
     public void restock(Supply supply) {
-        supplyBuffer.add(supply);
+        getSupplyBuffer().add(supply);
     }
     
     private void refillProduct(SupermarketProduct product, Integer qty) {
@@ -39,24 +42,72 @@ public class Supermarket implements Suppliable {
     }
     
     public void registerUser(User user) {
-        users.add(user);
+        getUsers().add(user);
     }
     
     public void registerProduct(SupermarketProduct product, int qty) {
-        stock.put(product, qty);
+        getStock().put(product, qty);
     }
     
     public void listStock() {
-        stock.forEach((product, qty) -> {
+        getStock().forEach((product, qty) -> {
             System.out.println(product + "\nQty: " + qty + "\n");
         });
     }
     
     public void listUsers() {
-        users
+        getUsers()
                 .stream()
                 .forEach(user -> {
                     System.out.println(user);
                 });
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public HashMap<SupermarketProduct, Integer> getStock() {
+        return stock;
+    }
+
+    public void setStock(HashMap<SupermarketProduct, Integer> stock) {
+        this.stock = stock;
+    }
+
+    public HashMap<SupermarketProduct, ArrayList<Observer>> getWaitList() {
+        return waitList;
+    }
+
+    public void setWaitList(HashMap<SupermarketProduct, ArrayList<Observer>> waitList) {
+        this.waitList = waitList;
+    }
+
+    public ArrayList<Sell> getHistory() {
+        return history;
+    }
+
+    public void setHistory(ArrayList<Sell> history) {
+        this.history = history;
+    }
+
+    public ArrayList<Supply> getSupplyBuffer() {
+        return supplyBuffer;
+    }
+
+    public void setSupplyBuffer(ArrayList<Supply> supplyBuffer) {
+        this.supplyBuffer = supplyBuffer;
+    }
+
+    public ConnectionsManager getConnectionManager() {
+        return connectionManager;
+    }
+
+    public void setConnectionManager(ConnectionsManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 }

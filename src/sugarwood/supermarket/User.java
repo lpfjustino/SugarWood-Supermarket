@@ -1,15 +1,22 @@
 package sugarwood.supermarket;
 
-public class User {
+import java.io.IOException;
+import java.net.Socket;
+import sugarwood.supermarket.gui.SugarWoodSupermarket;
+import sugarwood.supermarket.network.ConnectionsManager;
+import sugarwood.supermarket.product.SupermarketProduct;
+
+public class User implements SugarwoodClient {
     private int id;
     private String name;
     private String address;
     private String phone;
     private String mail;
     private String password;
+    protected Socket socket;
     
     public User(int id, String name, String address, String phone, String mail,
-                                                            String password) {
+                                            String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -18,6 +25,16 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public void login() throws IOException {
+        this.socket = new Socket(ConnectionsManager.IP, ConnectionsManager.PORT);
+    }
+
+    @Override
+    public void buy(SupermarketProduct product) {
+        SugarWoodSupermarket.getSupermarket().sell(product, this);
+    }
+    
     public int getId() {
         return id;
     }
