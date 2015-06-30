@@ -9,7 +9,8 @@ public class ConnectionsManager {
     private ServerSocket server;
     private ArrayList<Socket> connections;
     private boolean listening;
-    private static final int PORT = 1234;
+    public static final int PORT = 1234;
+    public static final String IP = "127.0.0.1";
     
     public ConnectionsManager() {
         listening = true;

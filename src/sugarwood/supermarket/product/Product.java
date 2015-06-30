@@ -2,9 +2,6 @@ package sugarwood.supermarket.product;
 
 import java.util.Date;
 
-import sugarwood.supermarket.csv.AbstractModel;
-
-
 public abstract class Product {
     private String name;
     private Date goodThru;

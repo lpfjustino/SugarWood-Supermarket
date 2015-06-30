@@ -3,7 +3,6 @@ package sugarwood.supermarket.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,64 +15,91 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import sugarwood.supermarket.SugarwoodClient;
+import sugarwood.supermarket.User;
 
 public class HomeScreenController implements Initializable {
-
-    @FXML private Button manager = new Button();
-    @FXML private Button supplier = new Button();
-    @FXML private Button client = new Button();
-
-    Stage primaryStage;
-	
+    @FXML Button loginButton;
+    @FXML TextField mail;
+    @FXML TextField password;
+    @FXML ToggleGroup userType;
+    
     @FXML
-    private void managerButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    private void loginButtonAction(ActionEvent event) {
+        if(!fieldsFilled()){
+            GUIManager.showDialog("Filed", "Login Failed.", "Please fill all"
+                    + " the fields.");
+            return;
+        }
+        
+        // Recupera os campos da GUI
+        String email = mail.getText();
+        String pwd = password.getText();
+        String type = ((RadioButton) userType.getSelectedToggle()).getText();
+
+        try {
+            // VERIFICAR NO CSV VALIDADE DO USUARIO E SENHA
+            // RECUPERAR A PARTIR DO CSV AS INFORMAÇÕES DO USUÁRIO
+            // INSTANCIÁ-LO E CHAMAR SUA FUNÇÃO login()
+            SugarwoodClient user = new User(1, "a", "b", "c", "d","e");
+
+            user.login();
+
+            GUIManager.showDialog("Success", "Login success.", "You've been"
+                    + " successfully logged in.");
+        }
+        catch (IOException ex){
+            GUIManager.showDialog("Failure", "Login failed.",
+                                    "Couldn't connect to server.");
+        }
+        
+        if(!type.equals(""))
+            changeScreen(event, type);
+    }
+    
+    private void changeScreen(ActionEvent event, String type) {
+        String resourcePath;
+        
+        switch(type) {
+            case "Client":
+                resourcePath = "OnlineStoreScreen.fxml";
+                break;
+                
+            case "Manager":
+                resourcePath = "ManagerScreen.fxml";
+                break;
+                
+            case "Supplier":
+                resourcePath = "SupplierScreen.fxml";
+                break;
+                
+            default:
+                resourcePath = "HomeScreen.fxml";
+                break;
+        }
+        
+        // Retorna para a tela principal
+        Stage primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
     	Platform.runLater(
             () -> {
                 try {
-                    Parent managerScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/ManagerScreen.fxml"));
-                    Scene scene = new Scene(managerScreen);
+                    Parent newScreen = FXMLLoader.load(getClass().getResource(resourcePath));
+                    Scene scene = new Scene(newScreen);
                     primaryStage.setScene(scene);
                     primaryStage.show();
                 } catch (IOException ex) { }
             });
     }
     
-    @FXML
-    private void supplierButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	Platform.runLater(
-            () -> {
-                try {
-                    Parent supplierScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/SupplierScreen.fxml"));
-                    Scene scene = new Scene(supplierScreen);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) { }
-            });
+    public boolean fieldsFilled() {
+        return( (!mail.getText().equals("")) &&
+                (!password.getText().equals("")) &&
+                (userType.getSelectedToggle() != null)
+                );
+                
     }
     
-    @FXML
-    private void clientButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	Platform.runLater(
-            () -> {
-                try {
-                    Parent onlineStoreScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/OnlineStoreScreen.fxml"));
-                    Scene scene = new Scene(onlineStoreScreen);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) { }
-            });
-    }
-	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-    
-    
-    
 }

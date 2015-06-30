@@ -1,7 +1,7 @@
 package sugarwood.supermarket.network;
 
 public enum Command {
-    EXIT("exit");
+    EXIT("exit"), LOGIN("login");
     
     String representation;
     
