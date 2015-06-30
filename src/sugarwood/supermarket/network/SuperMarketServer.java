@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class SuperMarketServer extends Thread {
-    private Socket socket=  null;
+    private Socket socket =  null;
     
     public SuperMarketServer(Socket socket) {
         super("SuperMarketServer Thread");

@@ -79,7 +79,6 @@ public class SupermarketProduct extends Product implements AbstractModel{
 		setSupplier(fieldValues[3]);
 		setPrice(Double.parseDouble(fieldValues[4]));
 		
-		
 	}
 
 	@Override

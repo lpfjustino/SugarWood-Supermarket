@@ -37,7 +37,7 @@ public class CSVManager {
 				writer.writeNext(item.getFieldValues());
 			}
 			writer.close();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("Archive opening problem:" + model.getArchiveName());
 			e.printStackTrace();
 		}
