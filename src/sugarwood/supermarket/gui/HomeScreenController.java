@@ -19,15 +19,21 @@ import sugarwood.supermarket.SugarwoodClient;
 import sugarwood.supermarket.User;
 
 public class HomeScreenController implements Initializable {
-    @FXML Button mail;
-    @FXML TextField username;
+    @FXML Button loginButton;
+    @FXML TextField mail;
     @FXML TextField password;
     @FXML ToggleGroup userType;
     
     @FXML
     private void loginButtonAction(ActionEvent event) {
+        if(!fieldsFilled()){
+            GUIManager.showDialog("Filed", "Login Failed.", "Please fill all"
+                    + " the fields.");
+            return;
+        }
+        
         // Recupera os campos da GUI
-        String email = this.mail.getText();
+        String email = mail.getText();
         String pwd = password.getText();
         String type = ((RadioButton) userType.getSelectedToggle()).getText();
 
@@ -36,6 +42,7 @@ public class HomeScreenController implements Initializable {
             // RECUPERAR A PARTIR DO CSV AS INFORMAÇÕES DO USUÁRIO
             // INSTANCIÁ-LO E CHAMAR SUA FUNÇÃO login()
             SugarwoodClient user = new User(1, "a", "b", "c", "d","e");
+
             user.login();
 
             GUIManager.showDialog("Success", "Login success.", "You've been"
@@ -46,7 +53,8 @@ public class HomeScreenController implements Initializable {
                                     "Couldn't connect to server.");
         }
         
-        changeScreen(event, type);
+        if(!type.equals(""))
+            changeScreen(event, type);
     }
     
     private void changeScreen(ActionEvent event, String type) {
@@ -81,6 +89,14 @@ public class HomeScreenController implements Initializable {
                     primaryStage.show();
                 } catch (IOException ex) { }
             });
+    }
+    
+    public boolean fieldsFilled() {
+        return( (!mail.getText().equals("")) &&
+                (!password.getText().equals("")) &&
+                (userType.getSelectedToggle() != null)
+                );
+                
     }
     
     @Override
