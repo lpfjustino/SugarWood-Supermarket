@@ -28,7 +28,7 @@ public class Sell implements AbstractModel {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -55,8 +55,15 @@ public class Sell implements AbstractModel {
 
 	@Override
 	public String[] getFieldValues() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String[] fieldValues = new String [] {getId().toString()
+//		, getUser()
+		, getProduct().toString()
+		, getQuantity().toString()
+		, ((Long)getSellDate().getTime()).toString()
+		};
+
+		return fieldValues;
 	}
 
 	@Override
