@@ -1,9 +1,12 @@
 package sugarwood.supermarket.product;
 
 import java.util.Date;
-import sugarwood.supermarket.User;
 
-public class Sell {
+import sugarwood.supermarket.User;
+import sugarwood.supermarket.csv.AbstractModel;
+
+public class Sell implements AbstractModel {
+	private Integer id;
     private User user;
     private Product product;
     private int quantity;
@@ -25,7 +28,7 @@ public class Sell {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -40,4 +43,41 @@ public class Sell {
     public void setSellDate(Date sellDate) {
         this.sellDate = sellDate;
     }
+
+	@Override
+	public Integer getId() {
+		return this.id;
+	}
+	
+	private void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public String[] getFieldValues() {
+		
+		String[] fieldValues = new String [] {getId().toString()
+//		, getUser()
+		, getProduct().toString()
+		, getQuantity().toString()
+		, ((Long)getSellDate().getTime()).toString()
+		};
+
+		return fieldValues;
+	}
+
+	@Override
+	public void setFieldValues(String[] fieldValues) {
+		setId (Integer.parseInt(fieldValues[0]));
+//		setUser(fieldValues[1]);
+		setProduct(product); //(new Date (Long.parseLong(fieldValues[2])));
+		setQuantity(Integer.parseInt(fieldValues[3]));
+		setSellDate(new Date (Long.parseLong(fieldValues[4])));
+	}
+
+	@Override
+	public String getArchiveName() {
+		return "sellDatabase.csv";
+	}
+
 }

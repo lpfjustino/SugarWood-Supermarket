@@ -1,20 +1,20 @@
 package sugarwood.supermarket.gui;
 
+import java.net.Socket;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sugarwood.supermarket.SugarwoodClient;
 import sugarwood.supermarket.Supermarket;
+import sugarwood.supermarket.User;
 import sugarwood.supermarket.product.SupermarketProduct;
 
 public class SugarWoodSupermarket extends Application {
     private static Supermarket supermarket;
+    private static Socket userSocket;
+
     
     public SugarWoodSupermarket() {
         supermarket = new Supermarket();
@@ -32,7 +32,7 @@ public class SugarWoodSupermarket extends Application {
     public static void main(String[] args) {
         launch(args);
         SupermarketProduct smp;
-        SugarwoodClient user;
+        User user;
         
 //        smp = new SupermarketProduct("produto teste",
 //                new Date(0), "LP", 1, 100.0);
@@ -44,17 +44,24 @@ public class SugarWoodSupermarket extends Application {
         
 //        supermarket.listStock();
         
-//        user = new SugarwoodClient(1, "LP", "Casa", "Tel", "Mail", "Pwd", 
-//                supermarket);
-//        supermarket.registerUser(user);
-//        user.login();
-//        user = new SugarwoodClient(1, "Biffi", "Quintal de Campenis",
-//                "Outro Tel", "Outro Mail", "Outro Pwd", supermarket);
-//        supermarket.registerUser(user);
-//        supermarket.listUsers();
+        user = new User(1, "LP", "Casa", "Tel", "Mail", "Pwd");
+        supermarket.registerUser(user);
+        user = new User(2, "Biffi", "Quintal de Campenis",
+                "Outro Tel", "Outro Mail", "Outro Pwd");
+        supermarket.registerUser(user);
+        
+        supermarket.listUsers();
     }
     
     public static Supermarket getSupermarket() {
         return supermarket;
+    }
+    
+    public static Socket getUserSocket() {
+        return userSocket;
+    }
+
+    public static void setUserSocket(Socket aUserSocket) {
+        userSocket = aUserSocket;
     }
 }

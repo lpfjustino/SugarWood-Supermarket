@@ -1,12 +1,16 @@
 package sugarwood.supermarket;
 
+
+import sugarwood.supermarket.csv.AbstractModel;
+
 import java.io.IOException;
 import java.net.Socket;
 import sugarwood.supermarket.gui.SugarWoodSupermarket;
 import sugarwood.supermarket.network.ConnectionsManager;
+
 import sugarwood.supermarket.product.SupermarketProduct;
 
-public class User implements SugarwoodClient {
+public class User implements SugarwoodClient, AbstractModel {
     private int id;
     private String name;
     private String address;
@@ -25,6 +29,10 @@ public class User implements SugarwoodClient {
         this.password = password;
     }
 
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+
     @Override
     public void login() throws IOException {
         this.socket = new Socket(ConnectionsManager.IP, ConnectionsManager.PORT);
@@ -35,7 +43,7 @@ public class User implements SugarwoodClient {
         SugarWoodSupermarket.getSupermarket().sell(product, this);
     }
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -94,4 +102,36 @@ public class User implements SugarwoodClient {
         
         return text;
     }
+
+	@Override
+	public String[] getFieldValues() {
+		
+		String[] fieldValues = new String [] {getId().toString()
+		, getName()
+		, getAddress()
+		, getPhone()
+		, getMail()
+		, getPassword()
+		};
+
+		return fieldValues;
+	}
+
+	@Override
+	public void setFieldValues(String[] fieldValues) {
+
+		setId (Integer.parseInt(fieldValues[0]));
+		setName (fieldValues[1]);
+		setAddress(fieldValues[2]);
+		setPhone (fieldValues[3]);
+		setMail (fieldValues[4]);
+		setPassword (fieldValues[5]);
+		
+	}
+
+	@Override
+	public String getArchiveName() {
+//		TODO: criar o arquivo e passar o nome certo
+		return "userDatabase.csv";
+	}
 }

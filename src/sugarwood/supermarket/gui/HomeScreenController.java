@@ -1,6 +1,7 @@
 package sugarwood.supermarket.gui;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -17,6 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import sugarwood.supermarket.SugarwoodClient;
 import sugarwood.supermarket.User;
+import sugarwood.supermarket.network.ConnectionsManager;
 
 public class HomeScreenController implements Initializable {
     @FXML Button loginButton;
@@ -26,8 +28,21 @@ public class HomeScreenController implements Initializable {
     
     @FXML
     private void loginButtonAction(ActionEvent event) {
+        // Tenta novamente conectar-se ao servidor se já não estiver conectado
+        if(SugarWoodSupermarket.getUserSocket() == null) {
+            try {
+                SugarWoodSupermarket.setUserSocket(new Socket(
+                        ConnectionsManager.IP, ConnectionsManager.PORT));
+            }
+            catch (IOException ex) {
+                GUIManager.showDialog("Failed", "Connection Failed.", "Connection"
+                    + " with server failed. Please try again later.");
+                return;
+            }
+        }
+        
         if(!fieldsFilled()){
-            GUIManager.showDialog("Filed", "Login Failed.", "Please fill all"
+            GUIManager.showDialog("Failed", "Login Failed.", "Please fill all"
                     + " the fields.");
             return;
         }

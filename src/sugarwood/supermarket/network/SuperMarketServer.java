@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class SuperMarketServer extends Thread {
-    private Socket socket = null;
+    private Socket socket =  null;
     
     public SuperMarketServer(Socket socket) {
         super("SuperMarketServer Thread");
@@ -17,6 +17,7 @@ public class SuperMarketServer extends Thread {
     @Override
     public void run() {
         try {
+            System.out.println("ALGUM FILHO DA PUTA CONECTOU NESSE LIXO");
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));

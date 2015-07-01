@@ -4,7 +4,7 @@ import sugarwood.supermarket.product.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observer;
-import sugarwood.supermarket.network.ConnectionsManager;
+import sugarwood.supermarket.csv.CSVManager;
 import sugarwood.supermarket.product.Sell;
 import sugarwood.supermarket.product.SupermarketProduct;
 
@@ -15,7 +15,6 @@ public class Supermarket implements Suppliable {
     private HashMap<SupermarketProduct, ArrayList<Observer>> waitList;
     private ArrayList<Sell> history;
     private ArrayList<Supply> supplyBuffer;
-    private ConnectionsManager connectionManager;
     
     public Supermarket() {
         users = new ArrayList<>();
@@ -23,7 +22,6 @@ public class Supermarket implements Suppliable {
         waitList = new HashMap<>();
         history = new ArrayList<>();
         supplyBuffer = new ArrayList<>();
-        connectionManager = new ConnectionsManager();
     }
     
     public synchronized void sell(Product product, User user) {
@@ -43,6 +41,7 @@ public class Supermarket implements Suppliable {
     
     public void registerUser(User user) {
         getUsers().add(user);
+        CSVManager.persist(user);
     }
     
     public void registerProduct(SupermarketProduct product, int qty) {
@@ -101,13 +100,5 @@ public class Supermarket implements Suppliable {
 
     public void setSupplyBuffer(ArrayList<Supply> supplyBuffer) {
         this.supplyBuffer = supplyBuffer;
-    }
-
-    public ConnectionsManager getConnectionManager() {
-        return connectionManager;
-    }
-
-    public void setConnectionManager(ConnectionsManager connectionManager) {
-        this.connectionManager = connectionManager;
     }
 }
