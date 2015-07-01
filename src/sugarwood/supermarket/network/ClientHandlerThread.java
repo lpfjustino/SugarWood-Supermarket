@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class SuperMarketServer extends Thread {
+public class ClientHandlerThread extends Thread {
     private Socket socket =  null;
     
-    public SuperMarketServer(Socket socket) {
+    public ClientHandlerThread(Socket socket) {
         super("SuperMarketServer Thread");
         this.socket = socket;
     }
@@ -17,7 +17,6 @@ public class SuperMarketServer extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("ALGUM FILHO DA PUTA CONECTOU NESSE LIXO");
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));

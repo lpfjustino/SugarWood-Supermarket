@@ -9,21 +9,20 @@ public class SugarwoodServer {
     public static final String IP = "127.0.0.1";
     
     public static void main(String[] args) {
+    	System.out.println("Server Online!");
         try {
             boolean listening = true;
             ServerSocket server = new ServerSocket(PORT);
             
             // Designa uma thread para tratar novas conexões
-            new Thread(() -> {
                 while(listening) {
                     try {
                         Socket newClient = server.accept();
-                        new ConnectionsHandler(newClient).start();
+                        new ClientHandlerThread(newClient).start();
                         System.out.println("CRIOU UM SOCKET PRO BRODER");
                     } catch (IOException ex) {
                     }
                 }
-            }).start();
         } catch (IOException ex) {
         }
     }

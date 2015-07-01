@@ -29,7 +29,7 @@ public class ConnectionsManager {
             while(listening) {
                 try {
                     Socket newClient = server.accept();
-                    new SuperMarketServer(newClient).start();
+                    new ClientHandlerThread(newClient).start();
                 } catch (IOException ex) {
                 }
             } 

@@ -44,13 +44,13 @@ public class SugarWoodSupermarket extends Application {
         
 //        supermarket.listStock();
         
-        user = new User(1, "LP", "Casa", "Tel", "Mail", "Pwd");
-        supermarket.registerUser(user);
-        user = new User(2, "Biffi", "Quintal de Campenis",
-                "Outro Tel", "Outro Mail", "Outro Pwd");
-        supermarket.registerUser(user);
-        
-        supermarket.listUsers();
+//        user = new User(1, "LP", "Casa", "Tel", "Mail", "Pwd");
+//        supermarket.registerUser(user);
+//        user = new User(2, "Biffi", "Quintal de Campenis",
+//                "Outro Tel", "Outro Mail", "Outro Pwd");
+//        supermarket.registerUser(user);
+//        
+//        supermarket.listUsers();
     }
     
     public static Supermarket getSupermarket() {
