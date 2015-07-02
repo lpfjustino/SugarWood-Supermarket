@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sugarwood.supermarket.Supermarket;
+import sugarwood.supermarket.User;
+import sugarwood.supermarket.csv.CSVManager;
 
 public class SugarWoodSupermarket extends Application {
     private static Supermarket supermarket;
@@ -27,6 +29,10 @@ public class SugarWoodSupermarket extends Application {
     }
 
     public static void main(String[] args) {
+        // Cria um primeiro usuário para ser administrador
+        User user = new User(1, "admin", "admin", "admin", "admin", "admin");
+        CSVManager.persist(user);
+
         launch(args);
     }
     
