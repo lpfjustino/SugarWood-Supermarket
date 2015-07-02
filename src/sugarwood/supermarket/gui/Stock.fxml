@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.StockScreenController">
+   <children>
+      <Label fx:id="dbTypeLabel" layoutX="45.0" layoutY="25.0" text="Stock" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="27.0" layoutY="361.0" mnemonicParsing="false" onAction="#homeButtonAction" text="Home" />
+      <TableView fx:id="usersTable" layoutX="105.0" layoutY="72.0" prefHeight="316.0" prefWidth="483.0">
+         <columns>
+            <TableColumn fx:id="qtyCollumn" prefWidth="48.0" text="Qty" />
+            <TableColumn fx:id="nameCollumn" prefWidth="434.0" text="Name" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
