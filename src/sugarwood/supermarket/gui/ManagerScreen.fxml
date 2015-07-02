@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.ManagerScreenController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.ManagerScreenController">
+   <children>
+      <Label layoutX="53.0" layoutY="41.0" text="Supermarket Manager" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="30.0" layoutY="100.0" mnemonicParsing="false" onAction="#newUserButtonAction" prefHeight="44.0" prefWidth="165.0" text="New User" />
+      <Button layoutX="30.0" layoutY="170.0" mnemonicParsing="false" onAction="#newProductButtonAction" prefHeight="44.0" prefWidth="165.0" text="New Product" />
+      <Button layoutX="30.0" layoutY="240.0" mnemonicParsing="false" onAction="#stockButtonAction" prefHeight="44.0" prefWidth="165.0" text="Stock" />
+   </children>
 </AnchorPane>

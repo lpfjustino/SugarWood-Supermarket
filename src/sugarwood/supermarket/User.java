@@ -1,15 +1,22 @@
 package sugarwood.supermarket;
 
-public class User {
+import sugarwood.supermarket.csv.AbstractModel;
+import java.net.Socket;
+import sugarwood.supermarket.gui.SugarWoodSupermarket;
+
+import sugarwood.supermarket.product.SupermarketProduct;
+
+public class User implements SugarwoodClient, AbstractModel {
     private int id;
     private String name;
     private String address;
     private String phone;
     private String mail;
     private String password;
+    protected Socket socket;
     
     public User(int id, String name, String address, String phone, String mail,
-                                                            String password) {
+                                            String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -18,7 +25,19 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public User() {
+    }
+
+    @Override
+    public void login(Socket socket) {
+        this.socket = socket;
+    }
+
+    public void buy(SupermarketProduct product) {
+        SugarWoodSupermarket.getSupermarket().sell(product, this);
+    }
+    
+    public Integer getId() {
         return id;
     }
 
@@ -76,5 +95,37 @@ public class User {
                 "Pwd: " + getPassword()+ "\n";
         
         return text;
+    }
+
+    @Override
+    public String[] getFieldValues() {
+
+            String[] fieldValues = new String [] {getId().toString()
+            , getName()
+            , getAddress()
+            , getPhone()
+            , getMail()
+            , getPassword()
+            };
+
+            return fieldValues;
+    }
+
+    @Override
+    public void setFieldValues(String[] fieldValues) {
+
+            setId (Integer.parseInt(fieldValues[0]));
+            setName (fieldValues[1]);
+            setAddress(fieldValues[2]);
+            setPhone (fieldValues[3]);
+            setMail (fieldValues[4]);
+            setPassword (fieldValues[5]);
+
+    }
+
+    @Override
+    public String getArchiveName() {
+//		TODO: criar o arquivo e passar o nome certo
+            return "userDatabase.csv";
     }
 }
