@@ -6,7 +6,7 @@ import sugarwood.supermarket.User;
 import sugarwood.supermarket.csv.AbstractModel;
 
 public class Sell implements AbstractModel {
-	private Integer id;
+    private Integer id;
     private User user;
     private Product product;
     private int quantity;

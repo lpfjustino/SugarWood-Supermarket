@@ -34,7 +34,7 @@ public class SupermarketProduct extends Product implements AbstractModel{
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,7 +42,7 @@ public class SupermarketProduct extends Product implements AbstractModel{
         return price;
     }
 
-    private void setPrice(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     

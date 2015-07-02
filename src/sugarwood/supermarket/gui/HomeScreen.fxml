@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,16 +8,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.HomeScreenController">
+<AnchorPane id="AnchorPane" prefHeight="244.0" prefWidth="247.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sugarwood.supermarket.gui.HomeScreenController">
    <children>
-      <Button layoutX="123.0" layoutY="174.0" mnemonicParsing="false" onAction="#managerButtonAction" prefHeight="44.0" prefWidth="368.0" text="Manager" />
-      <Button layoutX="123.0" layoutY="236.0" mnemonicParsing="false" onAction="#supplierButtonAction" prefHeight="44.0" prefWidth="368.0" text="Supplier" />
-      <Button layoutX="123.0" layoutY="298.0" mnemonicParsing="false" onAction="#clientButtonAction" prefHeight="44.0" prefWidth="368.0" text="Client" />
-      <Label layoutX="47.0" layoutY="45.0" text="SugarWood Supermarket">
+      <TextField fx:id="mail" layoutX="69.0" layoutY="14.0" prefHeight="25.0" prefWidth="154.0" text="Mail" AnchorPane.leftAnchor="69.0" />
+      <TextField fx:id="password" layoutX="96.0" layoutY="46.0" prefHeight="25.0" prefWidth="154.0" text="Pwd" AnchorPane.leftAnchor="69.0" />
+      <Label layoutX="13.0" layoutY="18.0" text="Email" AnchorPane.leftAnchor="0.0" />
+      <Label layoutX="14.0" layoutY="50.0" text="Password" />
+      <RadioButton layoutX="14.0" layoutY="119.0" mnemonicParsing="false" selected="true" text="Client">
+         <toggleGroup>
+            <ToggleGroup fx:id="userType" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="14.0" layoutY="142.0" mnemonicParsing="false" text="Manager" toggleGroup="$userType" />
+      <RadioButton layoutX="14.0" layoutY="166.0" mnemonicParsing="false" text="Supplier" toggleGroup="$userType" />
+      <Label layoutX="14.0" layoutY="89.0" text="I am:">
          <font>
-            <Font size="36.0" />
+            <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="62.0" layoutY="122.0" text="Select perspective:" />
+      <Button fx:id="loginButton" alignment="BASELINE_CENTER" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="38.0" prefWidth="197.0" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
 </AnchorPane>

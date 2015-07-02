@@ -15,62 +15,66 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class ManagerScreenController implements Initializable {
-	
+
 	@FXML private Button newUser = new Button();
-    @FXML private Button newProduct = new Button();
-    @FXML private Button stock = new Button();
+	@FXML private Button newProduct = new Button();
+	@FXML private Button stock = new Button();
 
-    Stage primaryStage;
-	
-    @FXML
-    private void newUserButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	Platform.runLater(
-            () -> {
-                try {
-                    Parent managerScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/ManagerScreen.fxml"));
-                    Scene scene = new Scene(managerScreen);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) { }
-            });
-    }
-    
-    @FXML
-    private void newProductButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	Platform.runLater(
-            () -> {
-                try {
-                    Parent supplierScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/SupplierScreen.fxml"));
-                    Scene scene = new Scene(supplierScreen);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) { }
-            });
-    }
-    
-    @FXML
-    private void stockButtonAction(ActionEvent event) {
-    	
-    	primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    	Platform.runLater(
-            () -> {
-                try {
-                    Parent onlineStoreScreen = FXMLLoader.load(getClass().getResource("/src/sugarwood.supermarket.gui/OnlineStoreScreen.fxml"));
-                    Scene scene = new Scene(onlineStoreScreen);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) { }
-            });
-    }
-	
+	Stage primaryStage;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+	@FXML
+	private void newUserButtonAction(ActionEvent event) {
+
+		primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+		Platform.runLater(
+				() -> {
+					try {
+						Parent newUserScene = FXMLLoader.load(getClass().getResource("NewUser.fxml"));
+						Scene scene = new Scene(newUserScene);
+						primaryStage.setScene(scene);
+						primaryStage.show();
+					} catch (IOException ex) { 
+						ex.printStackTrace();
+					}
+				});
+	}
+
+	@FXML
+	private void newProductButtonAction(ActionEvent event) {
+
+		primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+		Platform.runLater(
+				() -> {
+					try {
+						Parent supplierScreen = FXMLLoader.load(getClass().getResource("NewProduct.fxml"));
+						Scene scene = new Scene(supplierScreen);
+						primaryStage.setScene(scene);
+						primaryStage.show();
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+				});
+	}
+
+	@FXML
+	private void stockButtonAction(ActionEvent event) {
+
+		primaryStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+		Platform.runLater(
+				() -> {
+					try {
+						Parent onlineStoreScreen = FXMLLoader.load(getClass().getResource("Stock.fxml"));
+						Scene scene = new Scene(onlineStoreScreen);
+						primaryStage.setScene(scene);
+						primaryStage.show();
+					} catch (IOException ex) { }
+				});
+	}
+
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// TODO
+	}    
+
 }
